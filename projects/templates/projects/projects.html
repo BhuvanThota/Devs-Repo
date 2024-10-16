@@ -1,0 +1,43 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block title %} 
+    Devs Projects 
+{% endblock %}
+
+
+{% block content %}
+
+    <section id="projects_list">
+
+        {% for p in projects %}
+        <div>
+
+            <a href="{% url 'project_detail' p.id %}" class="single_project_link" >
+    
+                <div class="project_container">
+                    <img class="projects_img" width="250px" src="{% static p.featured_image.url %}"  alt={{project.title}} />
+        
+                    <div class="project_box">
+                        <h3 class="project_box_heading">{{p.title}}</h3>
+                        <p class="project_box_author">By {{p.owner.name}} </p>
+                        <p> <strong>{{p.vote_ratio}}%</strong>  Positive Feedback ({{p.vote_total}} Vote{% if p.vote_total > 1 %}s{% endif %})</p>
+
+                        {% if p.tags.all %}<hr> {% endif %}
+
+                        <div class="tags_box">
+                            {% for tag in p.tags.all %}
+                                <p class="tag">{{tag}}</p>
+                            {% endfor %}
+                        </div>
+                    </div>
+        
+                </div>
+            </a>
+        </div>
+
+        {% endfor %}
+    </section>
+
+{% endblock %}
+

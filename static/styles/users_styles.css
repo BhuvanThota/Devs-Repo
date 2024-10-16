@@ -1,0 +1,614 @@
+:root{
+
+    --body-bg-color: #f0f1f1;
+    --body-color: rgb(43, 62, 82);
+
+    --nav-bg-color: #22577E;
+    --nav-color: rgb(237, 240, 238);
+
+    --button-bg-color:#1e3549;
+    --button-color:#E4F1FE;
+
+    --highlight-text-color: #4f874e;
+
+    --tag-bg-color:#4ba349;
+    --tag-color: whitesmoke;
+
+}
+
+/* ###################################################################################### */
+
+/* Profile Main Page */
+
+#dev_head_section{
+    background-color: var(--nav-bg-color);
+    color: var(--nav-color);
+    padding: 1rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#dev_heading{
+    font-size: 1.75rem;
+    font-weight: lighter;
+    margin: 1rem auto;
+}
+
+#dev_heading > strong{
+    font-weight: 700;
+}
+
+.search_form{
+    margin: 0.25rem auto;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    width: 60%;
+    max-width: 500px;
+    justify-content: center;
+}
+
+.search_bar{
+    padding: 0.5rem 1rem;
+    flex-grow: 2;
+    border: none;
+    font-size: large;
+
+}
+
+.search_btn{
+    font-size: large;
+    border: none;
+    border-radius: 3px;
+    padding: 0.5rem 3rem;
+}
+
+
+.profile_link, .profile_link:hover, .profile_link:active{
+    text-decoration: none;
+}
+
+
+#dev_profiles_list{
+    margin: 3rem auto;
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 50px 30px;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.dev_info_box{
+    flex: 1;
+    padding: 1rem;
+    box-sizing: border-box;
+    text-decoration: none;
+    color: var(--body-color);
+    display: block;
+    max-width: 280px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.594);
+    
+}
+
+.dev_info_box:hover{
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+}
+
+.dev_img_name{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.dev_img_name > img{
+    width: 50px;
+    padding: 2px;
+    border-radius: 100%;
+    border: 2px solid var(--tag-bg-color);
+}
+
+.dev_title_sub{
+    display: flex;
+    flex-direction: column;
+    gap: 5px
+}
+
+.dev_title_sub > p{
+    font-size: small;
+}
+
+.dev_desc{
+    text-align: justify;
+    margin: 0.5rem 0;
+    padding-top: 0.75rem; 
+    border-top: 2px solid var(--nav-bg-color);
+}
+
+.dev_desc > p{
+    font-size: 0.9rem;
+}
+
+
+/* Profile Main Page Ends */
+
+/* ###################################################################################### */
+
+/* User Profile Page */
+
+.user_info_top{
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    gap: 30px;
+    justify-content: space-evenly;
+    align-content: baseline;
+    
+}
+
+.user-profile_page{
+    margin: 2rem auto;
+    width: 80%;
+}
+
+.user_porfile_info{
+    text-align: center;
+    max-width: 320px;
+    padding: 2rem 1rem;
+    border-radius: 10px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+
+}
+
+.users_info_left_box{
+    box-sizing: border-box;
+}
+
+.user_profile_image{
+    display: inline-block;
+    padding: 2px;
+    border-radius: 100%;
+    border: 2px solid var(--tag-bg-color);
+    
+}
+
+.user_profile_name_details{
+    margin: 1rem auto;
+}
+
+.user_profile_title{
+    margin-bottom: 0.5rem;
+}
+
+.user_profile_location{
+    margin: 1rem 0;
+    color: grey;
+}
+
+.user_profile_links{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap:20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.link_icon{
+    width: 32px;
+}
+
+
+.user_profile_about_skills{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    text-align: justify;
+}
+
+
+.about_me > h3{
+    margin-bottom: 1rem;
+}
+
+.title_bold{
+    font-size: 1.2rem;
+    font-weight: 800;
+    
+}
+
+.dev_skill_top{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    display: grid;
+    grid-template-columns: 1fr 3.5fr;
+    justify-content: baseline;
+    gap:5px
+}
+
+.dev_skill_top_title{
+    font-size: 1.1rem;
+}
+.skill_top_title{
+    padding: 0rem 1rem 0.25rem;
+    border-radius: 10px;
+    color: var(--nav-bg-color);
+}
+
+.skillset_otherSkills{
+    margin: 0.5rem 0;
+}
+
+.skill_bg{
+    background-color: #4f88b1df;
+}
+
+.other_skill_tag{
+    font-size: 1rem;
+}
+
+.profile_projects{
+    margin: 0.5rem 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 50px 30px;
+    justify-content: baseline;
+    align-items: center;
+}
+
+
+@media(max-width: 550px){
+    .user_info_top{
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .user-profile_page{
+        width: 84%;
+    }
+
+    .user_porfile_info{
+        text-align: center;
+        max-width: 500px;
+        padding: 1.5rem;
+    }
+
+    .user_profile_name_details{
+        font-size: 1.5rem;
+    }
+
+    .skillset_title{
+        font-size: 1.5rem;
+    }
+
+    .dev_skill_top_title{
+        font-size: 1.25rem;
+    }
+
+
+    .user_profile_about_skills{
+        font-size: 1.2rem;
+    }
+    
+    .dev_skill_top{
+        margin: 1rem auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: baseline;
+        gap:5px
+    }
+    
+}
+
+
+/* User Profile Page Ends */
+
+/* ###################################################################################### */
+
+
+/* Login_register Page  */
+
+.login_register_page{
+    text-align: left;
+    width: 100%;
+    height: 100%;
+    min-height: 100vh;
+    padding: 3rem 0;
+    background-image: url("/static/images/login-bg.jpg");
+    background-color: transparent;
+}
+
+.login_section{
+    margin: 0 auto 3rem;
+    padding: 2rem 3rem;
+    width: 60% ;
+    max-width: 550px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 24px;
+    background-color: #fbfbfb;
+    border-radius: 10px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.login_form{
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    width: 80%;
+    gap: 8px;
+}
+
+.login_form_title{
+    font-weight: bold;
+}
+
+.login_form_input{
+    margin-bottom: 6px;
+    border: 1px solid gray;
+    font-size: 1.2rem;
+    border-radius: 4px;
+    padding: 0.35rem 0.5rem;
+    background-color: var(--body-bg-color);
+}
+
+.login_form_input:focus{
+    border: none;
+    border: 1px solid rgb(39, 120, 152);
+}
+
+.login_form_btn{
+    display: block;
+    font-size: 1.1rem;
+    padding: 0.5rem 2rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 4px;
+    background-color: var(--button-bg-color);
+    color: var(--button-color);
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+}
+
+.login_form_btn:hover, .login_form_btn:active{
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+}
+
+.login_bottom{
+
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    width: 80%;
+    gap: 5px;
+
+}
+
+
+.register_form_label > label{
+    font-weight: bold;
+}
+
+.register_form_input > input{
+    margin-bottom: 6px;
+    width: 100%;
+    border: 1px solid gray;
+    font-size: 1.2rem;
+    border-radius: 4px;
+    padding: 0.35rem 0.5rem;
+    background-color: var(--body-bg-color);
+}
+
+.register_form_help_text{
+    font-size: 0.85em;
+    color: gray;
+}
+
+.register_btn{
+    display: block;
+    font-size: 1.1rem;
+    padding: 0.5rem 2rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 4px;
+    background-color: var(--button-bg-color);
+    color: var(--button-color);
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+
+}
+
+.register_btn:hover, .register_btn:active{
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+}
+
+@media(max-width: 550px){
+    .login_section{
+        margin: 3rem auto;
+        padding: 1em;
+        width: 80% ;
+    }
+}
+
+
+/* Login_register Page Ends */
+
+/* ###################################################################################### */
+
+
+/* Account Page */
+
+.account_title_edit{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    border-bottom: 2px solid black;
+    margin-bottom: 10px;
+}
+
+.account_item_display{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: no-wrap;
+    gap: 30px;
+    padding: 1rem 1rem 0.5rem;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgb(209, 213, 219) 0px 0px 0px 1px inset;
+
+}
+
+.edit_btn{
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    padding: 0.25rem 0.75rem;
+    text-decoration: none; 
+    font-weight: bold;
+}
+
+.edit_btn:hover, .edit_btn:active{
+    text-decoration: underline;
+}
+
+.edit_effect{
+    color: black;
+    background-color: rgba(109, 228, 200, 0.397);
+}
+
+.edit_effect:hover, .edit_effect:active{
+    background-color: rgba(40, 201, 155, 0.72);
+    color: rgb(255, 255, 255);
+}
+
+.add_effect{
+    padding: 0.5rem 1rem;
+    color: black;
+    background-color: rgba(138, 122, 218, 0.397);
+}
+
+.add_effect:hover, .add_effect:active{
+    background-color: rgba(109, 53, 200, 0.72);
+    color: rgb(255, 255, 255);
+}
+
+.delete_effect{
+    color: black;
+    background-color: rgba(218, 122, 122, 0.397);
+}
+
+.delete_effect:hover, .delete_effect:active{
+    background-color: rgba(228, 21, 21, 0.72);
+    color: rgb(255, 255, 255);
+}
+
+
+.edit_delete_btns{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+
+}
+
+.account_project_info{
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    justify-content: left;
+    align-items: center;
+}
+
+.account_project_image{
+    display: inline-block;
+    width: 100px;
+    border-radius: 10px;
+}
+
+.account_project_link{
+    text-decoration: none;
+    color: black;
+}
+
+@media(max-width: 550px){
+    .account_item_display{
+        display: flex;
+        flex-direction: column;
+        gap:10px;
+        padding: 1rem;
+    }
+    
+    .edit_delete_item{
+        width: 75%;
+    }
+
+    .edit_delete_btns{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap:0px;
+    }
+
+    .edit_btn{
+        padding: 0.75rem 2rem;
+    }
+
+    .add_effect{
+        font-size: 0.85em;
+    }
+}
+
+/* Account Page Ends */
+
+
+/* ###################################################################################### */
+
+
+/* Favourites Page */
+
+.star_projects_section{
+    margin: 2rem auto;
+    max-width: 80%;
+}
+
+.view_all_effect{
+    padding: 0.5rem 1rem;
+    color: black;
+    background-color: rgba(122, 218, 176, 0.557);
+}
+
+.view_all_effect:hover, .view_all_effect:active{
+    background-color: rgba(53, 200, 175, 0.829);
+    color: black;
+}
+
+
+.star_projects_display{
+    margin: 0.5rem 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 50px 30px;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Favourites Page Ends */
+
+

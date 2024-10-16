@@ -1,0 +1,91 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block title %} 
+    Devs Project - {{project.title}} 
+{% endblock %}
+
+
+{% block content %}
+
+    <section class="project_details_page">    
+
+        <div class="project_details_container">
+
+            <div class="project_details_info">
+                <img class="project_details_image" src="{% static project.featured_image.url %}"  alt={{project.title}} />
+
+                <div class="project_details_text">
+                    <div class="project_details_title_star">
+                        <h1>{{project.title}}</h1>
+                        {% if request.user.is_authenticated %}
+                            <form method="POST" action="">
+                                {% csrf_token %}
+                                <button type="submit" class="star-button" >
+                                    {% if request.user.profile in project.star_profiles.all %}
+                                        <h4 class="stars_count_display">
+                                            <img  class="star_display" src="{% static 'images/star-filled.svg' %}" alt="Star Icon">
+                                            {{stars_count}} Star{% if stars_count > 1 %}s{% endif %}
+                                        </h4>
+                                    {% else %}
+                                        <h4 class="stars_count_display">
+                                            <img class="star_display" src="{% static 'images/star-empty.svg' %}" alt="Star Icon">
+                                            {{stars_count}} Star{% if stars_count > 1 %}s{% endif %}
+                                        </h4>
+                                    {% endif %}
+                                </button>
+                            </form>
+                        {% endif %}
+                    </div>
+                    <p class="project_box_author detail_author">By <a class="author_link" href="{% url 'user-profile' project.owner.id %}">{{project.owner.name}} </a></p>
+                    <h4>ABOUT THE PROJECT 
+                        <span class="demo_source_link">
+                            {% if project.demo_link  %}
+                                <a href={{project.demo_link}} target="_blank"><img width="12px" src="{% static 'images/link-solid.svg' %}" alt="Link_icon" > Demo Link
+                                </a>
+                            {% endif %}
+                        </span>
+                    </h4>
+
+                    <p>{{project.description}}</p>
+
+                    
+                    <h5 class="created">Created: {{ project.created}}</h5>
+                </div>
+
+            </div>
+
+            <div class="project_details_tags " >
+                <span class="tags_left_box">
+                    <h3>TOOLS & STACKS</h3>
+                    <hr>
+                    <div class="tags_box">
+                        {% for tag in project.tags.all %}
+                            <p class="tag">{{tag}}</p>
+                        {% endfor %}
+                    </div>
+                    {% if project.source_link  %}
+                        <h5 class="demo_source_link"><a href={{project.source_link}} target="_blank"><img width="12px" src="{% static 'images/link-solid.svg' %}" alt="Link_icon" > Source Link</a> </h5>
+                    {% endif %}
+
+                </span>
+            </div>
+        </div>
+
+        <div class="project_feedback_container">
+            <hr>
+            <h3>FEEDBACK</h3>
+            <p class="feedback_votes"> <strong>{{project.vote_ratio}}%</strong>  Positive Feedback ({{project.vote_total}} Vote{% if project.vote_total > 1 %}s{% endif %})</p>
+
+            <form action="" method="POST" class="project_comments_form">
+                {% csrf_token %}
+                <textarea rows="5" name="project_comment" class="project_comment" placeholder="Write your comments here..."></textarea>
+                <input type="submit" value="Comments" />
+            </form>
+
+        </div>
+
+    </section>
+
+{% endblock  %}  
+

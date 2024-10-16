@@ -1,0 +1,42 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+ 
+    <link rel="icon" href="{% static 'images/logo.png' %}" type="image/x-icon" />
+    <title>{% block title %} Devs Repo {% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'styles/projects_styles.css' %}" />
+    <link rel="stylesheet" href="{% static 'styles/users_styles.css' %}" />
+
+</head>
+<body> 
+    {%include 'navBar.html' %}
+    <hr>
+    {% if messages %}
+    <div class="messages">
+        {% for message in messages %}
+        <div{% if message.tags %} class="alert {{ message.tags }}"{% endif %}>
+            <p>
+                {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important: {% endif %}
+                {{ message }} 
+            </p>
+            <button class="alert__close">  X</button>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    
+    {% block content %}
+    
+    {% endblock %}
+
+    
+    <hr>
+    
+    <h5>Footer Here</h5>
+    <script src="{% static 'js/app.js' %}"></script>
+</body>
+</html>

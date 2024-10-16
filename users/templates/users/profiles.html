@@ -1,0 +1,54 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block title %} User Profiles {% endblock %}
+
+{% block content %} 
+<section id="dev_head_section">
+    <h1 id="dev_heading">
+        CONNECT WITH <strong>DEVELOPERS</strong><br/>FROM AROUND THE WORLD
+    </h1>
+    
+    <form action="" class="search_form">
+        {% csrf_token %}
+        <input class="search_bar" type="text" placeholder="Search by developer name" />
+        <input class="search_btn btn_effect" type="submit" value="Search" />
+    </form>
+</section>
+
+
+<section id="dev_profiles_list">
+
+    {% for p in profiles %}
+        <div>
+            <a class="profile_link" href="{% url 'user-profile' p.id %}">
+
+                <div class="dev_info_box">
+                    <div class="dev_img_name">
+                        <img src="{% static p.profile_image.url %}" alt="profile-image" />
+                        <div class="dev_title_sub">
+                            <h3>{{p.name}}</h3>
+                            <p>{{p.short_intro|slice:'50'}}</p>
+                        </div>
+                        
+                    </div>
+                    
+                    <div class="dev_desc">
+                        <p>{{p.bio|slice:'150'}}</p>
+                    </div>
+                    
+                    <div class="tags_box">
+                        {% for skill in p.skill_set.all|slice:"6" %}
+                            <p class="tag skill_bg">{{skill}}</p>
+                        {% endfor %}
+                    </div>
+                </div>
+            
+            </a>
+        </div>
+    {% endfor %}
+
+</section>
+
+{% endblock %}
+

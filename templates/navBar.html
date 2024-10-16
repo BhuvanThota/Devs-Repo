@@ -1,0 +1,24 @@
+{% load static %}
+
+<nav>
+    <div id="nav_logo">
+        <a href="/" class="nav_link"> 
+            <img width="45px" src="{% static 'images/logo.png' %}" alt="logo"> 
+            <h4>Devs Repo</h4>  
+        </a>
+    </div>
+    <div id="right_nav">
+        <a href="{% url 'profiles'  %}" class="nav_link"> <h4>Developers </h4></a>
+        <a href="{% url 'projects'  %}" class="nav_link"> <h4>Projects </h4></a>
+        {% if request.user.is_authenticated %}
+        <a href="{% url 'starred'%}" class="nav_link"> <h4>Starred </h4></a>
+        <a href="{% url 'projects'  %}" class="nav_link"> <h4>Inbox </h4></a>
+        <a href="{% url 'account'  %}" class="nav_link"> <h4>My Account </h4></a>
+        <a href="{% url 'logout'  %}" class="nav_link"> <button class="login_nav_button btn_effect"><h4>Logout</h4></button></a>
+        {% else %}
+        <a href="{% url 'login'  %}" class="nav_link "> <button class="login_nav_button btn_effect"><h4>Login/Sign Up</h4></button></a>
+        {% endif %}
+    </div>
+</nav>
+
+

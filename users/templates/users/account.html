@@ -1,0 +1,160 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block title %} {{profile.username}} Profile {% endblock %}
+
+{% block content %} 
+
+<main class="user-profile_page">
+    <div class="user_info_top">
+        <span class="users_info_left_box">
+            
+            <section class="user_porfile_info">
+                <a href="{% url 'edit-account' %}" class="edit_btn edit_effect">
+                    <img width="20px" src="{% static 'images/edit-btn.svg' %}" alt="edit icon">
+                    Edit
+                </a>
+                <img class="user_profile_image" width="180px" src="{% static profile.profile_image.url %}" alt="Profile Image">
+                
+                <div class="user_profile_name_details"> 
+                    <h1 class="user_profile_title">{{profile.name}}</h1>
+                    <p class="user_profile_short_intro">{{profile.short_intro}}</p>
+                    <p class="user_profile_location">Based in {{profile.location}}</p>
+                </div>
+    
+                <div class="user_profile_links">
+                    {% if profile.social_github %} 
+                        <div>
+                            <a href="{{profile.social_github}}" target="_blank"> 
+                                <img class="link_icon" src="{% static 'images/github.png' %}" alt="Github Icon">
+                            </a>
+                        </div>
+                    {% endif %}
+    
+                    {% if profile.social_leetcode %} 
+                        <div>
+                            <a href="{{profile.social_leetcode}}" target="_blank"> 
+                                <img class="link_icon" src="{% static 'images/leetcode.png' %}" alt="Leetcode Icon">
+                            </a>
+                        </div>
+                    {% endif %}
+    
+                    {% if profile.social_linkedin %} 
+                        <div>
+                            <a href="{{profile.social_linkedin}}" target="_blank"> 
+                                <img class="link_icon" src="{% static 'images/linkedin.png' %}" alt="Linkedin Icon">
+                            </a>
+                        </div>
+                    {% endif %}
+    
+                    {% if profile.social_twitter %} 
+                        <div>
+                            <a href="{{profile.social_twitter}}" target="_blank"> 
+                                <img class="link_icon" src="{% static 'images/twitter.png' %}" alt="Twitter Icon">
+                            </a>
+                        </div>
+                    {% endif %}
+    
+                    {% if profile.social_website %} 
+                        <div>
+                            <a href="{{profile.social_website}}" target="_blank"> 
+                                <img class="link_icon" src="{% static 'images/website.png' %}" alt="Website Icon">
+                            </a>
+                        </div>
+                    {% endif %}
+                </div>
+            </section>
+        </span>
+
+
+        
+        <!--####################################  Skills  ########################################-->
+        
+        <section class="user_profile_about_skills">
+            <div class="about_me">
+                <h3 class="title_bold">ABOUT ME</h3>
+                <p>{{profile.bio}}</p>
+            </div>
+
+            <div class="skillset">
+                <div class="account_title_edit">
+                    <h3 class="skillset_title title_bold">SKILLS</h3>
+                    <a href="" class="edit_btn add_effect">
+                        <img width="12px" src="{% static 'images/plus.svg' %}" alt="Edit icon">
+                        Add Skill
+                    </a>
+                </div>
+                <div class="skillset_top">
+                    {% for skill in skills %}
+                        <div class="account_item_display">
+                            <div>
+                                <h3>Skill: {{skill.name}}</h3>
+                                <p><strong>Desc:</strong> {{skill.description|slice:'150'}}</p>
+                            </div>
+                            <div class="edit_delete_btns">
+                                <a href="" class="edit_btn edit_effect edit_delete_item">
+                                    <img width="12px" src="{% static 'images/edit-btn.svg' %}" alt="Edit icon">
+                                    Edit
+                                </a>
+                                <a href="" class="edit_btn delete_effect edit_delete_item">
+                                    <img width="12px" src="{% static 'images/remove.png' %}" alt="Delete icon">
+                                    Delete
+                                </a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                
+            </div>
+
+
+            <!--#####################################  Projects  ###################################-->
+
+            <div>   
+                <div class="account_title_edit">
+                    <h3 class="title_bold">PROJECTS</h3>
+                    <a href="{% url 'create_project' %}" class="edit_btn  add_effect">
+                        <img width="12px" src="{% static 'images/plus.svg' %}" alt="Edit icon">
+                        Add Project
+                    </a>
+                </div>  
+            </div>
+
+            <div class="skillset_top">
+
+                    {% for p in projects %}
+                    <div class="account_item_display">
+                        <a href="{% url 'project_detail' p.id %}"  class="account_project_link">
+                            <div class="account_project_info">
+                                <div>
+                                    <img  class="account_project_image" width="100px" src="{% static p.featured_image.url %}" alt={{p.title}}>
+                                    
+                                </div>
+                                <div>
+                                    <h3>Skill: {{p.title}}</h3>
+                                    <p><strong>Desc:</strong> {{p.description|slice:'150'}}</p>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="edit_delete_btns">
+                            <a href="{% url 'update_project' p.id %}" class="edit_btn edit_effect edit_delete_item">
+                                <img width="12px" src="{% static 'images/edit-btn.svg' %}" alt="Edit icon">
+                                Edit
+                            </a>
+                            <a href="" class="edit_btn delete_effect edit_delete_item">
+                                <img width="12px" src="{% static 'images/remove.png' %}" alt="Delete icon">
+                                Delete
+                            </a>
+                        </div>
+                    </div>
+            
+                    {% endfor %}
+            </div>
+            
+        </section>
+
+    </div>
+
+</main>
+
+{% endblock %}

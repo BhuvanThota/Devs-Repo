@@ -1,0 +1,67 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block title %} Login / SignUp {% endblock %}
+
+
+{% block content %} 
+    <main class="login_register_page">
+
+        {% if page == 'register' %}
+            <section class="login_section">
+                <div class="login_top">
+                    <img class="login_top_image" width="75px" src="{% static 'images/logo.png' %}" alt="logo image">
+                    <h1 class="login_top_title">Account Register</h1>
+                    <p class="login_top_desc">Hello Developer, Create your Dev-Repo!</p>
+                </div>
+                <form class="login_form " action="{% url 'register' %}" method="POST">
+                    {% csrf_token %}
+                    {% for field in form %}
+                        <div class="register_form_label">
+                            {{ field.label_tag}}
+                        </div>
+                        <div class="register_form_input">
+                            {{field}} 
+                        </div>
+                            {% if field.help_text %}
+                                <div class="register_form_help_text">{{field.help_text|safe}}</div>
+                            {% endif %}
+                    {% endfor %}
+                    <input class="register_btn" type="submit" value="Register User">
+                </form>
+                <div class="login_bottom ">
+                    <p>Already have an account?</p> 
+                    <a href="{% url 'login' %}">Login here</a>
+                </div>
+            </section>
+    
+        {% else %}
+            <section class="login_section">
+                <div class="login_top">
+                    <img class="login_top_image" width="75px" src="{% static 'images/logo.png' %}" alt="logo image">
+                    <h1 class="login_top_title">Account Login</h1>
+                    <p class="login_top_desc">Hello Developer, Welcome Back!</p>
+                </div>
+                <form class="login_form" action="{% url 'login' %}" method="POST">
+                    {% csrf_token %}
+                    <label class="login_form_title" for="username">Username:</label>
+                    <input type="text" class="login_form_input" name="username" id="username" placeholder="Enter your username..." />
+                    
+                    <label class="login_form_title" for="password">Password:</label>
+                    <input type="password" class="login_form_input" name="password" id="password" placeholder="•••••••"/>
+                    
+                    <input type="submit" class="login_form_btn" value="Log in" />
+                </form>
+                <div class="login_bottom">
+                    <p class="login_bottom_desc">Dont have an account?</p> 
+                    <a href="{% url 'register' %}" class="login_bottom_link">Sign Up here</a> 
+                </div>
+            </section>
+    
+        {% endif %}
+
+    </main>
+
+
+    
+{% endblock %}
