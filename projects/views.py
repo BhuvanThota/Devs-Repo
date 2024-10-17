@@ -54,8 +54,9 @@ def create_project(request):
             messages.success(request, 'Project was added successfully!')
             return redirect('account')
 
+    tags = Tag.objects.all().order_by('name')
     page = 'Add Project'
-    context = {'project_form': project_form, 'page': page}
+    context = {'project_form': project_form, 'page': page, 'tags': tags}
     return render(request, 'projects/project_form.html', context)
 
 
