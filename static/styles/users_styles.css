@@ -66,9 +66,6 @@
     padding: 0.5rem 3rem;
 }
 
-.search_btn:hover, .search_btn:active{
-
-}
 
 .profile_link, .profile_link:hover, .profile_link:active{
     text-decoration: none;
