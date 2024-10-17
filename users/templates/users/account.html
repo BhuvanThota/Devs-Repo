@@ -79,7 +79,7 @@
             <div class="skillset">
                 <div class="account_title_edit">
                     <h3 class="skillset_title title_bold">SKILLS</h3>
-                    <a href="" class="edit_btn add_effect">
+                    <a href="{% url 'add_skill' %}" class="edit_btn add_effect">
                         <img width="12px" src="{% static 'images/plus.svg' %}" alt="Edit icon">
                         Add Skill
                     </a>
@@ -92,11 +92,11 @@
                                 <p><strong>Desc:</strong> {{skill.description|slice:'150'}}</p>
                             </div>
                             <div class="edit_delete_btns">
-                                <a href="" class="edit_btn edit_effect edit_delete_item">
+                                <a href="{% url 'edit_skill' skill.id %}" class="edit_btn edit_effect edit_delete_item">
                                     <img width="12px" src="{% static 'images/edit-btn.svg' %}" alt="Edit icon">
                                     Edit
                                 </a>
-                                <a href="" class="edit_btn delete_effect edit_delete_item">
+                                <a href="{% url 'delete_skill' skill.id %}" class="edit_btn delete_effect edit_delete_item">
                                     <img width="12px" src="{% static 'images/remove.png' %}" alt="Delete icon">
                                     Delete
                                 </a>
@@ -131,7 +131,7 @@
                                     
                                 </div>
                                 <div>
-                                    <h3>Skill: {{p.title}}</h3>
+                                    <h3>Title: {{p.title}}</h3>
                                     <p><strong>Desc:</strong> {{p.description|slice:'150'}}</p>
                                 </div>
                             </div>

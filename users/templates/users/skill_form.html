@@ -1,12 +1,12 @@
 {% extends 'main.html' %}
+
 {% load static %}
 
 {% block title %} {{page}} {% endblock %}
 
-{% block content %}
+{% block content %} 
 
     
-
 <form action="" method="POST" enctype="multipart/form-data" >
     {% csrf_token %}
 
@@ -18,22 +18,13 @@
             </a>
         </div>
         <h1 class="form_title">{{page}}:</h1>
-        {% for field in project_form %}
-            {% if field == project_form.featured_image %}
-
-                <h3><strong>{{ field.label_tag }}</strong></h3>                        
-                {{field}}
-                <p> {{ field.errors }} </p>
-
-            {% else %}
+        {% for field in skill_form %}
                 <div class="field_wrapper">
 
-                    {{ field.label_tag }} {% if field.label_tag == project_form.title.label_tag %} (*required) {% endif %}
-                    
+                    {{ field.label_tag }}
                     <div class="input_field">{{ field }}</div>
                     <p> {{ field.errors }} </p>
                 </div>
-            {% endif %}
             
         {% endfor %}
         <input type="submit" class="project_form_submit add_effect "/>
@@ -42,3 +33,4 @@
 </form>
 
 {% endblock %}
+

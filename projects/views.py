@@ -50,9 +50,10 @@ def create_project(request):
             project = project_form.save(commit=False)
             project.owner = profile
             project.save()
-            return redirect('projects')
+            return redirect('account')
 
-    context = {'project_form': project_form}
+    page = 'Add Project'
+    context = {'project_form': project_form, 'page': page}
     return render(request, 'projects/project_form.html', context)
 
 
@@ -67,8 +68,10 @@ def update_project(request, id):
         if project_form.is_valid():
             project_form.save()
             return redirect('account')
+        
 
-    context = {'project_form': project_form}
+    page = 'Edit Project'
+    context = {'project_form': project_form, 'page': page}
     return render(request, 'projects/project_form.html', context)
 
 
@@ -82,4 +85,4 @@ def delete_project(request, id):
         return redirect('account')
 
     context = {'object': project}
-    return render(request, 'projects/delete_template.html', context)
+    return render(request, 'delete_template.html', context)
