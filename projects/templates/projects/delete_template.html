@@ -3,17 +3,18 @@
 {% block title %} Delete - {{object}} {% endblock %}
 
 {% block content %}
+<section class="delete_section">
 
-<form action="" method="POST">
-    {% csrf_token %}
-    <h3>Are you sure you want to delete "{{object}}"</h3>
-
-    <a href="{% url 'projects' %}"> Go back</a>
-
-    <p>
-        <input class="delete_button" type="submit" value="Confirm  Delete"  />
-    </p>
-
-</form>
+    <form action="" method="POST" class="delete_form">
+        {% csrf_token %}
+        <h3 class="delete_title">Are you sure you want to delete <span class="delete_title_span">"{{object}}"</span> ?</h3>
+    
+        <div class="delete_form_btns">
+            <a href="{% url 'projects' %}" class=" delete_btn edit_btn btn_effect"> Go back</a>
+            <input class="delete_btn  edit_btn delete_effect" type="submit" value="Confirm  Delete"  />
+        </div>
+    
+    </form>
+</section>
 
 {% endblock %}

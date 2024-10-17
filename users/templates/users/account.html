@@ -141,7 +141,7 @@
                                 <img width="12px" src="{% static 'images/edit-btn.svg' %}" alt="Edit icon">
                                 Edit
                             </a>
-                            <a href="" class="edit_btn delete_effect edit_delete_item">
+                            <a href="{% url 'delete_project' p.id %}" class="edit_btn delete_effect edit_delete_item">
                                 <img width="12px" src="{% static 'images/remove.png' %}" alt="Delete icon">
                                 Delete
                             </a>

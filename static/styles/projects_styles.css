@@ -84,18 +84,7 @@ nav {
     font-weight: bold;
 }
 
-.btn_effect{
-    color: rgb(61, 61, 61);
-    background-color: rgba(213, 234, 255, 0.916);
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
 
-}
-
-.btn_effect:hover, .btn_effect:active{
-    background-color: rgba(99, 153, 234, 0.943);
-    color: black;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
-}
 
 @media(max-width: 650px) {
     nav {
@@ -569,5 +558,52 @@ nav {
 }
 
 /* Project Form Page Ends */
+
+
+/* ###################################################################################### */
+
+
+/* Delete Page  */
+
+.delete_section{
+    width: 60%;
+    margin: 3em auto;
+    text-align: center;
+    background-color: rgba(255, 213, 213, 0.721);
+    border-radius: 10px;
+}
+
+.delete_form{
+    padding: 2em 3em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    font-size: 1.1em;
+}
+
+.delete_form_btns{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+
+.delete_title_span{
+    color: #ff0000;
+}
+
+.delete_btn.edit_btn{
+    border: none;
+    padding: 1em 2em;
+}
+
+
+/* Delete Page Ends */
+
 
 
