@@ -129,6 +129,7 @@ def addSkill(request):
             skill = skill_form.save(commit=False)
             skill.owner = profile
             skill.save()
+            messages.success(request, 'Skill was added successfully!')
             return redirect('account') 
     
     page = 'Add Skill'
@@ -146,6 +147,7 @@ def editSkill(request, id):
         skill_form = SkillForm(request.POST, instance=skill)
         if skill_form.is_valid():
             skill_form.save()
+            messages.success(request, 'Skill was updated successfully!')
             return redirect('account') 
     
     page = 'Edit Skill'
@@ -160,6 +162,7 @@ def deleteSkill(request, id):
 
     if request.method == 'POST':
         skill.delete()
+        messages.error(request, 'Skill was deleted!')
         return redirect('account') 
     
 

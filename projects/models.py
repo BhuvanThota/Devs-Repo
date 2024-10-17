@@ -1,7 +1,7 @@
 from django.db import models
 
 import uuid
-from users.models import Profile
+from users.models import Profile, Skill
 # Create your models here.
 
 
