@@ -7,6 +7,17 @@
 
 
 {% block content %}
+<section id="dev_head_section">
+    <h1 id="dev_heading">
+        SEARCH FOR <strong>PROJECTS</strong><br/>
+    </h1>
+    
+    <form action="{% url 'projects' %}" method="GET" class="search_form" >
+        {% csrf_token %}
+        <input class="search_bar" type="text" id="developer_search" name="search_query" placeholder="Search by project name / Skill" {% if search_query %} value={{search_query}}  {% endif %} />
+        <input class="search_btn btn_effect " type="submit" value="Search" />
+    </form>
+</section>
 
     <section id="projects_list">
 

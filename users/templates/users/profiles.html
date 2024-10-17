@@ -9,10 +9,10 @@
         CONNECT WITH <strong>DEVELOPERS</strong><br/>FROM AROUND THE WORLD
     </h1>
     
-    <form action="" class="search_form">
+    <form action="{% url 'profiles' %}" method="GET" class="search_form" >
         {% csrf_token %}
-        <input class="search_bar" type="text" placeholder="Search by developer name" />
-        <input class="search_btn btn_effect" type="submit" value="Search" />
+        <input class="search_bar" type="text" id="developer_search" name="search_query" placeholder="Search by developer name / Skill " {% if search_query %} value={{search_query}}  {% endif %} />
+        <input class="search_btn btn_effect " type="submit" value="Search" />
     </form>
 </section>
 
