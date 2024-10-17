@@ -19,36 +19,81 @@
     </form>
 </section>
 
-    <section id="projects_list">
+<section id="projects_list">
 
-        {% for p in projects %}
-        <div>
+    {% for p in projects %}
+    <div>
 
-            <a href="{% url 'project_detail' p.id %}" class="single_project_link" >
+        <a href="{% url 'project_detail' p.id %}" class="single_project_link" >
+
+            <div class="project_container">
+                <img class="projects_img" width="250px" src="{% static p.featured_image.url %}"  alt={{project.title}} />
     
-                <div class="project_container">
-                    <img class="projects_img" width="250px" src="{% static p.featured_image.url %}"  alt={{project.title}} />
-        
-                    <div class="project_box">
-                        <h3 class="project_box_heading">{{p.title}}</h3>
-                        <p class="project_box_author">By {{p.owner.name}} </p>
-                        <p> <strong>{{p.vote_ratio}}%</strong>  Positive Feedback ({{p.vote_total}} Vote{% if p.vote_total > 1 %}s{% endif %})</p>
+                <div class="project_box">
+                    <h3 class="project_box_heading">{{p.title}}</h3>
+                    <p class="project_box_author">By {{p.owner.name}} </p>
+                    <p> <strong>{{p.vote_ratio}}%</strong>  Positive Feedback ({{p.vote_total}} Vote{% if p.vote_total > 1 %}s{% endif %})</p>
 
-                        {% if p.tags.all %}<hr> {% endif %}
+                    {% if p.tags.all %}<hr> {% endif %}
 
-                        <div class="tags_box">
-                            {% for tag in p.tags.all %}
-                                <p class="tag">{{tag}}</p>
-                            {% endfor %}
-                        </div>
+                    <div class="tags_box">
+                        {% for tag in p.tags.all %}
+                            <p class="tag">{{tag}}</p>
+                        {% endfor %}
                     </div>
-        
                 </div>
-            </a>
-        </div>
+    
+            </div>
+        </a>
+    </div>
 
+    {% endfor %}
+</section>
+
+{% if paginator.num_pages > 1 %}
+
+<section class="paginator">
+    <ul class="pages_container">
+        <li class="page_item">
+            <a href="?page=1" class="edit_btn  {% if projects.has_previous == False %} page_effect_dull  {% else %} btn_effect  {% endif %} "> 
+                &#10502;
+            </a> 
+        </li>
+
+        {% if projects.has_previous %}
+        <li class="page_item">
+            <a href="?page={{projects.previous_page_number}}" class="edit_btn btn_effect"> 
+                &larrb;
+            </a> 
+        </li>
+        {% endif %}    
+        
+        {% for page in paginator.page_range %}
+        <li class="page_item">
+            <a href="?page={{page}}" class="edit_btn btn_effect {% if page == projects.number%} page_effect_active {% endif %} ">
+                {{page}}
+            </a> 
+        </li>
         {% endfor %}
-    </section>
+
+        {% if projects.has_next %}
+        <li class="page_item">
+            <a href="?page={{projects.next_page_number}}" class="edit_btn btn_effect"> 
+                &rarrb;
+            </a> 
+        </li>
+        {% endif %}   
+
+        <li class="page_item">
+            <a href="?page={{paginator.num_pages}}" class="edit_btn {% if projects.has_next == False  %} page_effect_dull  {% else %} btn_effect  {% endif %}"> 
+                &#10503;
+            </a> 
+        </li>
+    
+    </ul>
+</section>
+
+{% endif %}
 
 {% endblock %}
 

@@ -9,20 +9,16 @@
 <section class="star_projects_section">
     <div class="account_title_edit">
         <h3 class="skillset_title title_bold">Starred Projects: </h3>
-        <a href="" class="edit_btn view_all_effect">
-            View All
-            <img width="21px" src="{% static 'images/arrow-right-up.svg' %}" alt="Edit icon">
-        </a>
     </div>
 
     <div class="star_projects_display">
 
-        {% for p in star_projects %}
+        {% for p in projects %}
         <div>
 
             <a href="{% url 'project_detail' p.id %}" class="single_project_link" >
     
-                <div class="project_container">
+                <div class="project_container ">
                     <img class="projects_img" width="250px" src="{% static p.featured_image.url %}"  alt={{project.title}} />
         
                     <div class="project_box">
@@ -48,5 +44,54 @@
     </div>
 
 </section>
+
+
+
+{% if paginator.num_pages > 1 %}
+
+<section class="paginator">
+    <ul class="pages_container">
+        <li class="page_item">
+            <a href="?page=1" class="edit_btn  {% if projects.has_previous == False %} page_effect_dull  {% else %} btn_effect  {% endif %} "> 
+                &#10502;
+            </a> 
+        </li>
+
+        {% if projects.has_previous %}
+        <li class="page_item">
+            <a href="?page={{projects.previous_page_number}}" class="edit_btn btn_effect"> 
+                &larrb;
+            </a> 
+        </li>
+        {% endif %}    
+        
+        {% for page in paginator.page_range %}
+        <li class="page_item">
+            <a href="?page={{page}}" class="edit_btn btn_effect {% if page == projects.number%} page_effect_active {% endif %} ">
+                {{page}}
+            </a> 
+        </li>
+        {% endfor %}
+
+        {% if projects.has_next %}
+        <li class="page_item">
+            <a href="?page={{projects.next_page_number}}" class="edit_btn btn_effect"> 
+                &rarrb;
+            </a> 
+        </li>
+        {% endif %}   
+
+        <li class="page_item">
+            <a href="?page={{paginator.num_pages}}" class="edit_btn {% if projects.has_next == False  %} page_effect_dull  {% else %} btn_effect  {% endif %}"> 
+                &#10503;
+            </a> 
+        </li>
+    
+    </ul>
+</section>
+
+{% endif %}
+
+
 
 {% endblock %}

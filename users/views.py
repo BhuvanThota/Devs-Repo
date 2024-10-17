@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.db.models import Q
 from django.contrib import messages
 from .models import *
@@ -73,7 +74,21 @@ def registerUser(request):
 
 def profiles(request):
     profiles, search_query = searchProfiles(request)
-    context = { 'profiles' : profiles, 'search_query': search_query}
+
+    page = request.GET.get('page')
+    results = 6
+    paginator = Paginator(profiles, results)
+    
+    try:
+        profiles = paginator.page(page)
+    except PageNotAnInteger:
+        page = 1
+        profiles = paginator.page(page)
+    except EmptyPage:
+        page = paginator.num_pages
+        profiles = paginator.page(page)
+
+    context = { 'profiles' : profiles, 'search_query': search_query, 'paginator': paginator}
     return render(request, 'users/profiles.html', context)
 
 
@@ -97,10 +112,25 @@ def account(request):
 
 @login_required(login_url = 'login')
 def starred(request):
-    star_projects = request.user.profile.star_projects.all()
-    if len(star_projects) > 3:
-        star_projects = star_projects[:3]
-    context = {'star_projects': star_projects}
+    projects = request.user.profile.star_projects.all()
+    # if len(star_projects) > 3:
+    #     star_projects = star_projects[:3]
+
+    page = request.GET.get('page')
+    results = 6
+    paginator = Paginator(projects, results)
+    
+    try:
+        projects = paginator.page(page)
+    except PageNotAnInteger:
+        page = 1
+        projects = paginator.page(page)
+    except EmptyPage:
+        page = paginator.num_pages
+        projects = paginator.page(page)
+
+
+    context = {'projects' : projects, 'paginator': paginator}
     return render(request, 'users/starred.html', context)
 
 

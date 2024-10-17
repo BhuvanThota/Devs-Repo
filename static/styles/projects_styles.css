@@ -258,6 +258,33 @@ nav {
     
 }
 
+.paginator{
+    margin: 2rem auto;
+    max-width: 70%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.pages_container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap:5px;
+}
+
+
+.page_item{
+    list-style: none;
+    font-size: 1.1em;
+}
+
+.page_link{
+    text-decoration: none;
+}
+
 /* Projects List Page Ends*/
 
 
@@ -347,11 +374,11 @@ nav {
     border: 1px solid gray;
     border-radius: 10px;
     padding: 0.25rem 1rem;
-    background-color: #ffe60071;
+    background-color: #fff6a571;
 }
 
 .star-button:hover, .star-button:active{
-    background-color: #ffd500dc;
+    background-color: #ffdd36aa;
     box-shadow: rgba(148, 152, 21, 0.42) 0px 1px 2px 0px, rgba(0, 0, 0, 0.15) 0px 2px 4px 2px;
 
 }
