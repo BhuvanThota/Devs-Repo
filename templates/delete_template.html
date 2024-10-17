@@ -10,7 +10,7 @@
         <h3 class="delete_title">Are you sure you want to delete <span class="delete_title_span">"{{object}}"</span> ?</h3>
     
         <div class="delete_form_btns">
-            <a href="{% url 'account' %}" class=" delete_btn edit_btn btn_effect"> Go back</a>
+            <a href="{{request.GET.next}}" class=" delete_btn edit_btn btn_effect"> Go back</a>
             <input class="delete_btn  edit_btn delete_effect" type="submit" value="Confirm  Delete"  />
         </div>
     
