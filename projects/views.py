@@ -26,8 +26,13 @@ def projects(request):
         page = paginator.num_pages
         projects = paginator.page(page)
 
+    left_index = max(int(page)-3 , 1)
+    right_index = min(int(page)+4, paginator.num_pages+1)
 
-    context = {'projects' : projects, 'search_query': search_query, 'paginator': paginator}
+    custom_range = range(left_index,right_index)
+
+    context = {'projects' : projects, 'search_query': search_query, 'paginator': paginator, 'custom_range': custom_range}
+
     return render(request, 'projects/projects.html',context )
 
 

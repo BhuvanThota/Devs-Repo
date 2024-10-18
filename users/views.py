@@ -88,7 +88,12 @@ def profiles(request):
         page = paginator.num_pages
         profiles = paginator.page(page)
 
-    context = { 'profiles' : profiles, 'search_query': search_query, 'paginator': paginator}
+    left_index = max(int(page)-3 , 1)
+    right_index = min(int(page)+4, paginator.num_pages+1)
+
+    custom_range = range(left_index,right_index)
+
+    context = { 'profiles' : profiles, 'search_query': search_query, 'paginator': paginator, 'custom_range': custom_range}
     return render(request, 'users/profiles.html', context)
 
 
@@ -129,8 +134,13 @@ def starred(request):
         page = paginator.num_pages
         projects = paginator.page(page)
 
+    left_index = max(int(page)-3 , 1)
+    right_index = min(int(page)+4, paginator.num_pages+1)
 
-    context = {'projects' : projects, 'paginator': paginator}
+    custom_range = range(left_index,right_index)
+
+
+    context = {'projects' : projects, 'paginator': paginator, 'custom_range': custom_range}
     return render(request, 'users/starred.html', context)
 
 

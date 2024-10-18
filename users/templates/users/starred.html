@@ -65,7 +65,7 @@
         </li>
         {% endif %}    
         
-        {% for page in paginator.page_range %}
+        {% for page in custom_range %}
         <li class="page_item">
             <a href="?page={{page}}" class="edit_btn btn_effect {% if page == projects.number%} page_effect_active {% endif %} ">
                 {{page}}
