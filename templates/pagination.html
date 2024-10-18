@@ -6,14 +6,14 @@
 <section class="paginator">
     <ul class="pages_container">
         <li class="page_item">
-            <a href="?page=1" class="edit_btn  {% if querySet.has_previous == False %} page_effect_dull  {% else %} btn_effect  {% endif %} "> 
+            <a href="?page=1{% if search_query %}&search_query={{search_query}} {% endif %}" class="edit_btn  {% if querySet.has_previous == False %} page_effect_dull  {% else %} btn_effect  {% endif %} "> 
                 &#10502;
             </a> 
         </li>
 
         {% if querySet.has_previous %}
         <li class="page_item">
-            <a href="?page={{querySet.previous_page_number}}" class="edit_btn btn_effect"> 
+            <a href="?page={{querySet.previous_page_number}}{% if search_query %}&search_query={{search_query}} {% endif %}" class="edit_btn btn_effect"> 
                 &larrb;
             </a> 
         </li>
@@ -21,7 +21,7 @@
         
         {% for page in custom_range %}
         <li class="page_item">
-            <a href="?page={{page}}" class="edit_btn btn_effect {% if page == querySet.number%} page_effect_active {% endif %} ">
+            <a href="?page={{page}}{% if search_query %}&search_query={{search_query}} {% endif %}" class="edit_btn btn_effect {% if page == querySet.number%} page_effect_active {% endif %} ">
                 {{page}}
             </a> 
         </li>
@@ -29,14 +29,14 @@
 
         {% if querySet.has_next %}
         <li class="page_item">
-            <a href="?page={{querySet.next_page_number}}" class="edit_btn btn_effect"> 
+            <a href="?page={{querySet.next_page_number}}{% if search_query %}&search_query={{search_query}} {% endif %}" class="edit_btn btn_effect"> 
                 &rarrb;
             </a> 
         </li>
         {% endif %}   
 
         <li class="page_item">
-            <a href="?page={{paginator.num_pages}}" class="edit_btn {% if querySet.has_next == False  %} page_effect_dull  {% else %} btn_effect  {% endif %}"> 
+            <a href="?page={{paginator.num_pages}}{% if search_query %}&search_query={{search_query}} {% endif %}" class="edit_btn {% if querySet.has_next == False  %} page_effect_dull  {% else %} btn_effect  {% endif %}"> 
                 &#10503;
             </a> 
         </li>
