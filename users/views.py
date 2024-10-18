@@ -75,23 +75,7 @@ def registerUser(request):
 def profiles(request):
     profiles, search_query = searchProfiles(request)
 
-    page = request.GET.get('page')
-    results = 6
-    paginator = Paginator(profiles, results)
-    
-    try:
-        profiles = paginator.page(page)
-    except PageNotAnInteger:
-        page = 1
-        profiles = paginator.page(page)
-    except EmptyPage:
-        page = paginator.num_pages
-        profiles = paginator.page(page)
-
-    left_index = max(int(page)-3 , 1)
-    right_index = min(int(page)+4, paginator.num_pages+1)
-
-    custom_range = range(left_index,right_index)
+    profiles, paginator, custom_range = pagination(request, profiles, 6)    
 
     context = { 'profiles' : profiles, 'search_query': search_query, 'paginator': paginator, 'custom_range': custom_range}
     return render(request, 'users/profiles.html', context)
@@ -121,24 +105,7 @@ def starred(request):
     # if len(star_projects) > 3:
     #     star_projects = star_projects[:3]
 
-    page = request.GET.get('page')
-    results = 6
-    paginator = Paginator(projects, results)
-    
-    try:
-        projects = paginator.page(page)
-    except PageNotAnInteger:
-        page = 1
-        projects = paginator.page(page)
-    except EmptyPage:
-        page = paginator.num_pages
-        projects = paginator.page(page)
-
-    left_index = max(int(page)-3 , 1)
-    right_index = min(int(page)+4, paginator.num_pages+1)
-
-    custom_range = range(left_index,right_index)
-
+    projects, paginator, custom_range = pagination(request, projects, 6)    
 
     context = {'projects' : projects, 'paginator': paginator, 'custom_range': custom_range}
     return render(request, 'users/starred.html', context)

@@ -3,7 +3,6 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.db.models import Q
 from django.contrib.auth.models import User
-from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from .models import *
 from .forms import *
 from .utils import *
@@ -12,25 +11,9 @@ from .utils import *
 
 def projects(request):
     projects, search_query = searchProjects(request)
+
+    projects, paginator, custom_range = pagination(request, projects, 1)    
     
-    page = request.GET.get('page')
-    results = 6
-    paginator = Paginator(projects, results)
-    
-    try:
-        projects = paginator.page(page)
-    except PageNotAnInteger:
-        page = 1
-        projects = paginator.page(page)
-    except EmptyPage:
-        page = paginator.num_pages
-        projects = paginator.page(page)
-
-    left_index = max(int(page)-3 , 1)
-    right_index = min(int(page)+4, paginator.num_pages+1)
-
-    custom_range = range(left_index,right_index)
-
     context = {'projects' : projects, 'search_query': search_query, 'paginator': paginator, 'custom_range': custom_range}
 
     return render(request, 'projects/projects.html',context )
