@@ -7,13 +7,7 @@ from django.dispatch import receiver
 
 
 
-# @receiver(post_save, sender= Project)
+@receiver(post_save, sender= Review)
 def createProject(sender, instance, created, **kwargs):
     print('Instance: ', instance)
-    if created:
-        print('project created')
-    else:
-        print('project updated')
-
-
-post_save.connect(createProject, sender=Project)
+    

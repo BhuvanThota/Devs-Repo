@@ -133,7 +133,7 @@ nav {
     gap:10px;
     border-radius: 10px;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
-    background-color: #91c6ec;
+    background-color: #a9d4f3;
     color:#006bc9;
 }
 
@@ -142,17 +142,17 @@ nav {
     padding: 0.25rem 0.5rem;
     border-radius: 100%;
     font-weight: bolder;
-    background-color: #ffffff50;
-    color: #ffffff;
+    background-color: #ffffffcf;
+    color: #4a4a4a;
 }
 
 .error{
-    background-color: #f99b9b;
+    background-color: #f0a7a7;
     color:#d20303;
 }
 
 .success{
-    background-color: #ccfcbb;
+    background-color: #eeffe0ef;
     color:#0a9700;
 }
 
@@ -454,6 +454,46 @@ nav {
     font-size: small;
     color: grey;
 }
+
+
+.input_vote{
+    padding: 0.25rem;
+    max-width: 150px;
+}
+
+.input_comment{
+    
+}
+
+.comment{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-content: baseline;
+    border-top: 1px solid gray;
+    padding: 0.75rem 1rem;
+}
+
+.mini-profile-pic{
+    display: inline-block;
+    width: 50px;
+    padding: 2px;
+    border-radius: 100%;
+    border: 2px solid var(--tag-bg-color);
+}
+
+.comment_title{
+    border-bottom: 1px solid gray;
+}
+
+.comment_info{
+    padding-top: 8px;
+    font-size: 1.1em;
+}
+
 
 @media(max-width: 550px){
     .project_details_page{

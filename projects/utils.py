@@ -3,6 +3,21 @@ from django.db.models import Q
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 
+def star_count_project(request, project):
+    star = False
+    stars_count = 0
+    
+    if request.user.is_authenticated:
+        star_projects = request.user.profile.star_projects.all()
+        stars_count = len(project.star_profiles.all())
+        if project in star_projects:
+            star = True
+        else:
+            star = False
+    
+    return star, stars_count
+    
+
 
 def searchProjects(request):
     search_query = ''
@@ -22,6 +37,7 @@ def searchProjects(request):
 def pagination(request, projects, results = 6):
     page = request.GET.get('page')
     paginator = Paginator(projects, results)
+
     
     try:
         projects = paginator.page(page)

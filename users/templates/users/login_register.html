@@ -42,7 +42,7 @@
                     <h1 class="login_top_title">Account Login</h1>
                     <p class="login_top_desc">Hello Developer, Welcome Back!</p>
                 </div>
-                <form class="login_form" action="{% url 'login' %}" method="POST">
+                <form class="login_form" action="" method="POST">
                     {% csrf_token %}
                     <label class="login_form_title" for="username">Username:</label>
                     <input type="text" class="login_form_input" name="username" id="username" placeholder="Enter your username..." />

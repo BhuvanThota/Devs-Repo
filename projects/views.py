@@ -10,7 +10,11 @@ from .utils import *
 
 
 def projects(request):
-    projects, search_query = searchProjects(request)
+    search_query = ''
+    projects = Project.objects.all()
+
+    if request.GET.get('search_query'):
+        projects, search_query = searchProjects(request)
 
     projects, paginator, custom_range = pagination(request, projects, 6)    
     
@@ -21,27 +25,50 @@ def projects(request):
 
 def project_detail(request, id):
     project = Project.objects.get(id = id)
-    star = False
-    stars_count = 0
-    if request.user.is_authenticated:
-        star_projects = request.user.profile.star_projects.all()
-        stars_count = len(project.star_profiles.all())
-        if project in star_projects:
-            star = True
-        else:
-            star = False
 
-        if request.method == "POST":
-            if request.user.profile in project.star_profiles.all():
-                project.star_profiles.remove(request.user.profile)  # Remove star
-            else:
-                project.star_profiles.add(request.user.profile)  
-            
-            project.save()
-            return redirect('project_detail',id = id)
+    comment_form = ReviewForm()
+    
+    star, stars_count = star_count_project(request, project)
+    
+    if request.method == "POST":
+        comment_form = ReviewForm(request.POST)
+        review = comment_form.save(commit=False)
+        review.project = project
+        review.owner = request.user.profile
+        review.save()
         
-    context = {'project' : project, 'star': star, 'stars_count' : stars_count}
+        #Update the Votes value in Project 
+        project.getVoteCount
+
+        messages.success(request, 'Added review successfully!')
+        
+        return redirect('project_detail', id = id)
+    
+
+    context = {'project' : project, 'star': star, 'stars_count' : stars_count, 'comment_form': comment_form}
     return render(request, 'projects/project_detail.html', context)
+
+
+
+@login_required(login_url='login')
+def toggleStar(request, id):
+    profile = request.user.profile
+    project = Project.objects.get(id = id)
+
+    if request.method == "POST":
+        if profile in project.star_profiles.all():
+            project.star_profiles.remove(profile)  # Remove star
+            messages.success(request, 'Project Un-Starred!')
+        else:
+            project.star_profiles.add(profile)  
+            messages.success(request, 'Project Starred!')
+
+        
+        project.save()
+
+    
+    return redirect('project_detail',id = id)
+
 
 
 @login_required(login_url='login')

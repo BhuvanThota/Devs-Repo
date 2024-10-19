@@ -27,6 +27,9 @@ class Profile(models.Model):
 
     def __str__(self):
         return self.username
+    
+    class Meta:
+        ordering = ['created']
 
 
 
