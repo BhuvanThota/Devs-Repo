@@ -1,0 +1,38 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block title %} Inbox  {% if unread_messages %} ({{unread_messages}}) {% endif %}  {% endblock %}
+
+{% block content %}
+
+<section class="single_message_section">
+
+    <div class="single_message_info">
+        <div> 
+            <a class="project_back_btn_link" href="{% url 'inbox' %}">
+                <img class="project_back_btn_icon" src="{% static 'images/back_arrow_icon.svg' %}" alt="Back button">
+                Back
+            </a>
+        </div>
+
+        <div>
+            <h1 class="single_message_subject">{{ single_message.subject }}</h1>
+        </div>
+    
+        <div>
+            <p class="single_message_sender">Sender: {{ single_message.sender_name}}</p>
+            <p class="single_message_time">{{ single_message.created|date:"M. d, Y, h:i A" }}</p>
+        </div>
+
+        <div>
+            <p class="single_message_body">{{ single_message.body|linebreaksbr}}</p>
+        </div>
+        
+    </div>
+
+
+    
+
+</section>
+
+{% endblock %}

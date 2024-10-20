@@ -3,16 +3,18 @@
     --body-bg-color: #f0f1f1;
     --body-color: rgb(43, 62, 82);
 
-    --nav-bg-color: #145a8b;
+    --nav-bg-color: #0f5b91;
     --nav-color: rgb(237, 240, 238);
 
     --button-bg-color:#1e3549;
     --button-color:#E4F1FE;
 
-    --highlight-text-color: #4f874e;
+    --highlight-text-color: #25a823;
 
     --tag-bg-color:#4ba349;
     --tag-color: whitesmoke;
+
+    --inbox-color: rgb(0, 136, 255) ;
 
 }
 
@@ -637,5 +639,126 @@
 }
 
 /* Favourites Page Ends */
+
+
+/* ########################################################################################################### */
+
+/* Inbox Section */
+
+.inbox_message_section{
+    margin: 3rem auto;
+    width: 70%;
+    box-sizing: border-box;
+}
+
+.unread_count{
+    color: var(--inbox-color);
+}
+
+.inbox_messages_list{
+    margin: 1.5rem 0;
+    padding: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgb(121, 121, 121);
+    border-radius: 10px;
+    background-color: rgb(255, 255, 255);
+
+}
+
+.inbox_message_link, .inbox_message_link:visited{
+    text-decoration: none;
+    color: black;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;  
+    justify-content: baseline;
+    align-items: center;
+    font-size: 1.1em;
+}
+
+.inbox_message{
+    padding: 1.25rem;
+      
+}
+
+.inbox_message:not(:first-child) {
+    border-top: 1px solid gray; 
+}
+
+.unread_message{
+    font-weight: bold;
+}
+
+
+@media(max-width: 550px){
+    .inbox_message_section{
+        margin: 2rem auto;
+        width: 90%
+    }
+    
+    .inbox_message_link, .inbox_message_link:visited{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: space-evenly;
+        align-items: center;
+
+    }
+
+}
+/* Inbox Section Ends */
+
+
+/* ########################################################################################################### */
+
+/* Single Message Section */
+
+.single_message_section{
+    margin: 3rem auto;
+    padding: 3rem;
+    box-sizing: border-box;
+    width: 70%;    
+    border: 1px solid rgb(121, 121, 121);
+    border-radius: 10px;
+    background-color: rgb(255, 255, 255);
+}
+
+.single_message_info{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    align-items: flex-start;
+    font-size: 1.1em;
+}
+
+.single_message_sender{
+    font-size: 1.1em;
+    color: var(--highlight-text-color)
+}
+
+.single_message_time{
+    color: gray;
+}
+
+
+.single_message_body{
+    text-align: justify;
+}
+
+@media(max-width: 550px){
+    .single_message_section{
+        margin: 3rem auto;
+        padding: 1.5rem;
+        width: 90%;
+    }
+    
+}
+
+
+/* Single Message Section Ends */
+
 
 

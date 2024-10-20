@@ -3,16 +3,18 @@
     --body-bg-color: #f0f1f1;
     --body-color: rgb(43, 62, 82);
 
-    --nav-bg-color: #22577E;
+    --nav-bg-color: #0f5b91;
     --nav-color: rgb(237, 240, 238);
 
     --button-bg-color:#1e3549;
     --button-color:#E4F1FE;
 
-    --highlight-text-color: #4f874e;
+    --highlight-text-color: #25a823;
 
     --tag-bg-color:#4ba349;
     --tag-color: whitesmoke;
+
+    --inbox-color: rgb(0, 136, 255) ;
 
 }
 
@@ -555,10 +557,14 @@ nav {
     display: inline-block;
     text-decoration: none;
     color: black;
-    padding: 0.5rem 2rem 0.5rem 0;
+    padding: 0.5rem 1rem 0.5rem 0;
+    background-color: rgba(183, 229, 248, 0.594);
+    border-radius: 10px;
 }
 
 .project_back_btn_link:hover{
+    background-color: rgba(135, 214, 248, 0.694);
+    font-weight: bold;
     text-decoration: underline;
 }
 
