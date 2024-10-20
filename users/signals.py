@@ -1,4 +1,9 @@
 from django.contrib.auth.models import User
+from django.contrib import messages
+
+from django.conf import settings
+from django.core.mail import send_mail
+
 from .models import *
 from projects.models import *
 # Create your models here.
@@ -21,6 +26,25 @@ def createProfile(sender, instance, created, **kwargs):
             email = user.email,
             name = user.first_name,
         )
+
+        EMAIL_HOST_USER = settings.EMAIL_HOST_USER
+        subject = "Welcome to DEVSREPO"
+        message = "You have successfully created account in DevsRepo. Please update your profile."
+
+        if user.email is not None:
+            try:    
+                send_mail(
+                    subject,
+                    message,
+                    EMAIL_HOST_USER,
+                    [user.email,],
+                    fail_silently=False,
+                )
+                print('Email sent successfully', user.email)
+            except:
+                pass
+                
+        
 
 @receiver(post_save, sender=Profile)
 def updateUser(sender, instance, created, **kwargs):

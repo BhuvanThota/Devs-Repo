@@ -31,7 +31,7 @@
                 </form>
                 <div class="login_bottom ">
                     <p>Already have an account?</p> 
-                    <a href="{% url 'login' %}">Login here</a>
+                    <a href="{% url 'login' %}" class="login_bottom_link edit_btn">Login here</a>
                 </div>
             </section>
     
@@ -53,8 +53,13 @@
                     <input type="submit" class="login_form_btn" value="Log in" />
                 </form>
                 <div class="login_bottom">
-                    <p class="login_bottom_desc">Dont have an account?</p> 
-                    <a href="{% url 'register' %}" class="login_bottom_link">Sign Up here</a> 
+                    <div class="forgot_btn">
+                        <a href="" class="forgot_btn_link edit_btn" >Forgot Password?</a>
+                    </div>
+                    <div>
+                        <p class="login_bottom_desc">Dont have an account?</p> 
+                        <a href="{% url 'register' %}" class="login_bottom_link edit_btn">Sign Up here</a> 
+                    </div>
                 </div>
             </section>
     

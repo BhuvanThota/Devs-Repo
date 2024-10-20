@@ -16,6 +16,8 @@
 
     --inbox-color: rgb(0, 136, 255) ;
 
+    --login-btn-color: #00a4c9;  
+
 }
 
 /* ###################################################################################### */
@@ -214,7 +216,7 @@
 }
 
 .send_message.edit_btn:hover{
-    background-color: #058fae;
+    background-color: var(--login-btn-color);
 }
 
 
@@ -390,21 +392,35 @@
     border-radius: 4px;
     background-color: var(--button-bg-color);
     color: var(--button-color);
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+
+
 }
 
 .login_form_btn:hover, .login_form_btn:active{
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+
 }
 
 .login_bottom{
-
+    margin-top:0.75em;
     display: flex;
     flex-direction: column;
     text-align: left;
     width: 80%;
-    gap: 5px;
+    gap:10px;
+    align-items: flex-start;
 
+}
+
+.forgot_btn_link.edit_btn, .forgot_btn_link.edit_btn:hover {
+    color:var(--login-btn-color);
+}
+
+.login_bottom_link, .login_bottom_link:visited{
+    color: var(--highlight-text-color);
+    font-size: 1.1em;
+    margin-top: 0.25rem;
 }
 
 
@@ -518,8 +534,8 @@
 
 
 .btn_effect:hover, .btn_effect:active, .page_effect_active{
-    background-color: rgba(32, 102, 207, 0.943);
-    color: rgb(227, 227, 227);
+    background-color: var(--login-btn-color);
+    color: rgb(255, 255, 255);
     font-weight: bold;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
 }
