@@ -59,6 +59,12 @@
                         </div>
                     {% endif %}
                 </div>
+
+                {% if request.user.profile.id != profile.id %}
+                <div >
+                    <a href="{% url 'message_form' profile.id %}" class="send_message edit_btn btn_effect">Send Message</a>
+                </div>
+                {% endif %}
             </section>
         </span>
 

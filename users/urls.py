@@ -20,6 +20,8 @@ urlpatterns = [
 
     path('inbox', views.inbox, name='inbox'),
     path('single_message/<str:id>', views.single_message, name='single_message'),
+    path('message_form/<str:id>', views.message_form, name='message_form'),
+
 
     
 ]

@@ -208,6 +208,15 @@
     width: 32px;
 }
 
+.send_message.edit_btn{
+    margin: 1rem 0.5rem;
+    padding: 0.75em;
+}
+
+.send_message.edit_btn:hover{
+    background-color: #058fae;
+}
+
 
 .user_profile_about_skills{
     display: flex;
@@ -666,6 +675,16 @@
 
 }
 
+.inbox_message{
+    padding: 1.25rem;
+      
+}
+
+.inbox_message:hover{
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+
+
 .inbox_message_link, .inbox_message_link:visited{
     text-decoration: none;
     color: black;
@@ -676,10 +695,6 @@
     font-size: 1.1em;
 }
 
-.inbox_message{
-    padding: 1.25rem;
-      
-}
 
 .inbox_message:not(:first-child) {
     border-top: 1px solid gray; 
@@ -756,7 +771,6 @@
     }
     
 }
-
 
 /* Single Message Section Ends */
 
