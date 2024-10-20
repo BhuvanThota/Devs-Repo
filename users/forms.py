@@ -2,7 +2,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 
 from django.forms import ModelForm
-from .models import Profile
+from .models import Profile, Skill
 
 
 class CustomUserCreationForm(UserCreationForm):
@@ -15,6 +15,7 @@ class CustomUserCreationForm(UserCreationForm):
             'first_name' : 'Name',
             'email' : 'Email',
         }
+
 
 class ProfileForm(ModelForm):
     class Meta:
@@ -30,3 +31,8 @@ class ProfileForm(ModelForm):
             if name != 'profile_image':
                 field.widget.attrs.update({'class': 'added_input'})
 
+
+class SkillForm(ModelForm):
+    class Meta:
+        model = Skill
+        fields = ['name', 'description']

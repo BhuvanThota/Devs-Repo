@@ -3,7 +3,7 @@
     --body-bg-color: #f0f1f1;
     --body-color: rgb(43, 62, 82);
 
-    --nav-bg-color: #22577E;
+    --nav-bg-color: #145a8b;
     --nav-color: rgb(237, 240, 238);
 
     --button-bg-color:#1e3549;
@@ -478,18 +478,45 @@
     gap: 5px;
     border-radius: 10px;
     margin-bottom: 1rem;
-    padding: 0.25rem 0.75rem;
+    padding: 0.25em 0.75em;
     text-decoration: none; 
     font-weight: bold;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+
 }
 
 .edit_btn:hover, .edit_btn:active{
     text-decoration: underline;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+
+}
+
+.btn_effect{
+    color: rgb(61, 61, 61);
+    background-color: rgba(213, 234, 255, 0.916);
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+
+
+}
+
+.page_effect_dull, .page_effect_dull:hover, .page_effect_dull:active{
+    background-color: rgba(73, 82, 95, 0.79);
+    color: rgb(227, 227, 227);
+    font-weight: bold;
+}
+
+
+.btn_effect:hover, .btn_effect:active, .page_effect_active{
+    background-color: rgba(32, 102, 207, 0.943);
+    color: rgb(227, 227, 227);
+    font-weight: bold;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
 }
 
 .edit_effect{
     color: black;
     background-color: rgba(109, 228, 200, 0.397);
+
 }
 
 .edit_effect:hover, .edit_effect:active{
@@ -605,7 +632,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: 50px 30px;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
 }
 

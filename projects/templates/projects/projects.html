@@ -7,37 +7,50 @@
 
 
 {% block content %}
-
-    <section id="projects_list">
-
-        {% for p in projects %}
-        <div>
-
-            <a href="{% url 'project_detail' p.id %}" class="single_project_link" >
+<section id="dev_head_section">
+    <h1 id="dev_heading">
+        SEARCH FOR <strong>PROJECTS</strong><br/>
+    </h1>
     
-                <div class="project_container">
-                    <img class="projects_img" width="250px" src="{% static p.featured_image.url %}"  alt={{project.title}} />
-        
-                    <div class="project_box">
-                        <h3 class="project_box_heading">{{p.title}}</h3>
-                        <p class="project_box_author">By {{p.owner.name}} </p>
-                        <p> <strong>{{p.vote_ratio}}%</strong>  Positive Feedback ({{p.vote_total}} Vote{% if p.vote_total > 1 %}s{% endif %})</p>
+    <form action="{% url 'projects' %}" method="GET" class="search_form" >
+        {% csrf_token %}
+        <input class="search_bar" type="text" id="developer_search" name="search_query" placeholder="Search by project name / Skill" {% if search_query %} value={{search_query}}  {% endif %} />
+        <input class="search_btn btn_effect " type="submit" value="Search" />
+    </form>
+</section>
 
-                        {% if p.tags.all %}<hr> {% endif %}
+<section id="projects_list">
 
-                        <div class="tags_box">
-                            {% for tag in p.tags.all %}
-                                <p class="tag">{{tag}}</p>
-                            {% endfor %}
-                        </div>
+    {% for p in projects %}
+    <div>
+
+        <a href="{% url 'project_detail' p.id %}" class="single_project_link" >
+
+            <div class="project_container">
+                <img class="projects_img" width="250px" src="{% static p.featured_image.url %}"  alt={{project.title}} />
+    
+                <div class="project_box">
+                    <h3 class="project_box_heading">{{p.title}}</h3>
+                    <p class="project_box_author">By {{p.owner.name}} </p>
+                    <p> <strong>{{p.vote_ratio}}%</strong>  Positive Feedback ({{p.vote_total}} Vote{% if p.vote_total > 1 %}s{% endif %})</p>
+
+                    {% if p.tags.all %}<hr> {% endif %}
+
+                    <div class="tags_box">
+                        {% for tag in p.tags.all %}
+                            <p class="tag">{{tag}}</p>
+                        {% endfor %}
                     </div>
-        
                 </div>
-            </a>
-        </div>
+    
+            </div>
+        </a>
+    </div>
 
-        {% endfor %}
-    </section>
+    {% endfor %}
+</section>
+
+{% include 'pagination.html' with querySet=projects paginator=paginator custom_range=custom_range %}
 
 {% endblock %}
 

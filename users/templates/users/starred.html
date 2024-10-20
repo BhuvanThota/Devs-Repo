@@ -9,20 +9,16 @@
 <section class="star_projects_section">
     <div class="account_title_edit">
         <h3 class="skillset_title title_bold">Starred Projects: </h3>
-        <a href="" class="edit_btn view_all_effect">
-            View All
-            <img width="21px" src="{% static 'images/arrow-right-up.svg' %}" alt="Edit icon">
-        </a>
     </div>
 
     <div class="star_projects_display">
 
-        {% for p in star_projects %}
+        {% for p in projects %}
         <div>
 
             <a href="{% url 'project_detail' p.id %}" class="single_project_link" >
     
-                <div class="project_container">
+                <div class="project_container ">
                     <img class="projects_img" width="250px" src="{% static p.featured_image.url %}"  alt={{project.title}} />
         
                     <div class="project_box">
@@ -48,5 +44,9 @@
     </div>
 
 </section>
+
+
+{% include 'pagination.html' with querySet=projects paginator=paginator custom_range=custom_range %}
+
 
 {% endblock %}

@@ -84,18 +84,7 @@ nav {
     font-weight: bold;
 }
 
-.btn_effect{
-    color: rgb(61, 61, 61);
-    background-color: rgba(213, 234, 255, 0.916);
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
 
-}
-
-.btn_effect:hover, .btn_effect:active{
-    background-color: rgba(99, 153, 234, 0.943);
-    color: black;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
-}
 
 @media(max-width: 650px) {
     nav {
@@ -144,7 +133,7 @@ nav {
     gap:10px;
     border-radius: 10px;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
-    background-color: #91c6ec;
+    background-color: #a9d4f3;
     color:#006bc9;
 }
 
@@ -153,18 +142,18 @@ nav {
     padding: 0.25rem 0.5rem;
     border-radius: 100%;
     font-weight: bolder;
-    background-color: #ffffff50;
-    color: #ffffff;
+    background-color: #ffffffcf;
+    color: #4a4a4a;
 }
 
 .error{
-    background-color: #f99b9b;
+    background-color: #f0a7a7;
     color:#d20303;
 }
 
 .success{
-    background-color: #b4f99b;
-    color:#0ba900;
+    background-color: #eeffe0ef;
+    color:#0a9700;
 }
 
 /* Messages Section Ens */
@@ -269,6 +258,33 @@ nav {
     
 }
 
+.paginator{
+    margin: 2rem auto;
+    max-width: 70%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.pages_container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap:5px;
+}
+
+
+.page_item{
+    list-style: none;
+    font-size: 1.1em;
+}
+
+.page_link{
+    text-decoration: none;
+}
+
 /* Projects List Page Ends*/
 
 
@@ -358,11 +374,11 @@ nav {
     border: 1px solid gray;
     border-radius: 10px;
     padding: 0.25rem 1rem;
-    background-color: #ffe60071;
+    background-color: #fff6a571;
 }
 
 .star-button:hover, .star-button:active{
-    background-color: #ffd500dc;
+    background-color: #ffdd36aa;
     box-shadow: rgba(148, 152, 21, 0.42) 0px 1px 2px 0px, rgba(0, 0, 0, 0.15) 0px 2px 4px 2px;
 
 }
@@ -438,6 +454,46 @@ nav {
     font-size: small;
     color: grey;
 }
+
+
+.input_vote{
+    padding: 0.25rem;
+    max-width: 150px;
+}
+
+.input_comment{
+    
+}
+
+.comment{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-content: baseline;
+    border-top: 1px solid gray;
+    padding: 0.75rem 1rem;
+}
+
+.mini-profile-pic{
+    display: inline-block;
+    width: 50px;
+    padding: 2px;
+    border-radius: 100%;
+    border: 2px solid var(--tag-bg-color);
+}
+
+.comment_title{
+    border-bottom: 1px solid gray;
+}
+
+.comment_info{
+    padding-top: 8px;
+    font-size: 1.1em;
+}
+
 
 @media(max-width: 550px){
     .project_details_page{
@@ -569,5 +625,52 @@ nav {
 }
 
 /* Project Form Page Ends */
+
+
+/* ###################################################################################### */
+
+
+/* Delete Page  */
+
+.delete_section{
+    width: 60%;
+    margin: 3em auto;
+    text-align: center;
+    background-color: rgba(255, 213, 213, 0.721);
+    border-radius: 10px;
+}
+
+.delete_form{
+    padding: 2em 3em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    font-size: 1.1em;
+}
+
+.delete_form_btns{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+
+.delete_title_span{
+    color: #ff0000;
+}
+
+.delete_btn.edit_btn{
+    border: none;
+    padding: 1em 2em;
+}
+
+
+/* Delete Page Ends */
+
 
 

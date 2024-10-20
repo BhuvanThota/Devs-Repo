@@ -1,39 +1,74 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
+from django.db.models import Q
 from django.contrib.auth.models import User
 from .models import *
 from .forms import *
+from .utils import *
 # Create your views here.
 
 
 def projects(request):
-    projectsList = Project.objects.all()
-    return render(request, 'projects/projects.html', {'projects' : projectsList})
+    search_query = ''
+    projects = Project.objects.all()
+
+    if request.GET.get('search_query'):
+        projects, search_query = searchProjects(request)
+
+    projects, paginator, custom_range = pagination(request, projects, 6)    
+    
+    context = {'projects' : projects, 'search_query': search_query, 'paginator': paginator, 'custom_range': custom_range}
+
+    return render(request, 'projects/projects.html',context )
 
 
 def project_detail(request, id):
     project = Project.objects.get(id = id)
-    star = False
-    stars_count = 0
-    if request.user.is_authenticated:
-        star_projects = request.user.profile.star_projects.all()
-        stars_count = len(project.star_profiles.all())
-        if project in star_projects:
-            star = True
-        else:
-            star = False
 
-        if request.method == "POST":
-            if request.user.profile in project.star_profiles.all():
-                project.star_profiles.remove(request.user.profile)  # Remove star
-            else:
-                project.star_profiles.add(request.user.profile)  
-            
-            project.save()
-            return redirect('project_detail',id = id)
+    comment_form = ReviewForm()
+    
+    star, stars_count = star_count_project(request, project)
+    
+    if request.method == "POST":
+        comment_form = ReviewForm(request.POST)
+        review = comment_form.save(commit=False)
+        review.project = project
+        review.owner = request.user.profile
+        review.save()
         
-    context = {'project' : project, 'star': star, 'stars_count' : stars_count}
+        #Update the Votes value in Project 
+        project.getVoteCount
+
+        messages.success(request, 'Added review successfully!')
+        
+        return redirect('project_detail', id = id)
+    
+
+    context = {'project' : project, 'star': star, 'stars_count' : stars_count, 'comment_form': comment_form}
     return render(request, 'projects/project_detail.html', context)
+
+
+
+@login_required(login_url='login')
+def toggleStar(request, id):
+    profile = request.user.profile
+    project = Project.objects.get(id = id)
+
+    if request.method == "POST":
+        if profile in project.star_profiles.all():
+            project.star_profiles.remove(profile)  # Remove star
+            messages.success(request, 'Project Un-Starred!')
+        else:
+            project.star_profiles.add(profile)  
+            messages.success(request, 'Project Starred!')
+
+        
+        project.save()
+
+    
+    return redirect('project_detail',id = id)
+
 
 
 @login_required(login_url='login')
@@ -41,41 +76,52 @@ def create_project(request):
 
     # if not request.user.is_authenticated:
     #     return redirect('login')
-
-    project_form = ProjectForm(user=request.user.profile)
+    profile =request.user.profile
+    project_form = ProjectForm()
 
     if request.method == 'POST':
-        project_form = ProjectForm(request.POST, request.FILES, user=request.user.profile)
+        project_form = ProjectForm(request.POST, request.FILES)
         if project_form.is_valid():
-            project_form.save()
-            return redirect('projects')
+            project = project_form.save(commit=False)
+            project.owner = profile
+            project.save()
+            messages.success(request, 'Project was added successfully!')
+            return redirect('account')
 
-    context = {'project_form': project_form}
+    tags = Tag.objects.all().order_by('name')
+    page = 'Add Project'
+    context = {'project_form': project_form, 'page': page, 'tags': tags}
     return render(request, 'projects/project_form.html', context)
 
 
 @login_required(login_url='login')
 def update_project(request, id):
-    project = Project.objects.get(id=id)
+    profile = request.user.profile
+    project = profile.project_set.get(id=id)
     project_form = ProjectForm(instance= project)
 
     if request.method == 'POST':
         project_form = ProjectForm(request.POST, request.FILES, instance=project)
         if project_form.is_valid():
             project_form.save()
+            messages.success(request, 'Project was updated successfully!')
             return redirect('account')
+        
 
-    context = {'project_form': project_form}
+    page = 'Edit Project'
+    context = {'project_form': project_form, 'page': page}
     return render(request, 'projects/project_form.html', context)
 
 
 @login_required(login_url='login')
 def delete_project(request, id):
-    project = Project.objects.get(id=id)
+    profile = request.user.profile
+    project = profile.project_set.get(id=id)
 
     if request.method == 'POST':
         project.delete()
-        return redirect('projects')
+        messages.success(request, 'Project was deleted successfully!')
+        return redirect('account')
 
     context = {'object': project}
-    return render(request, 'projects/delete_template.html', context)
+    return render(request, 'delete_template.html', context)

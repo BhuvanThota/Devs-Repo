@@ -2,10 +2,12 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from django.db.models import Q
 from django.contrib import messages
-from .models import Profile
-from .forms import ProfileForm
-from .forms import CustomUserCreationForm
+from .models import *
+from .forms import *
+from .utils import *
 
 # Create your views here.
 
@@ -19,7 +21,7 @@ def loginUser(request):
         return redirect('profiles')
 
     if request.method == "POST":
-        username = request.POST['username']
+        username = request.POST['username'].lower()
         password = request.POST['password']
 
         try:
@@ -32,7 +34,7 @@ def loginUser(request):
  
         if user is not None:
             login(request, user)
-            return redirect('profiles')
+            return redirect(request.GET['next'] if 'next' in request.GET else 'profiles')
         else:
             messages.error(request, 'Username or password is incorrect')
             return redirect('login')
@@ -71,8 +73,15 @@ def registerUser(request):
 
 
 def profiles(request):
+    search_query = ''
     profiles = Profile.objects.all()
-    context = { 'profiles' : profiles}
+
+    if request.GET.get('search_query'):
+        profiles, search_query = searchProfiles(request)
+
+    profiles, paginator, custom_range = pagination(request, profiles, 6)    
+
+    context = { 'profiles' : profiles, 'search_query': search_query, 'paginator': paginator, 'custom_range': custom_range}
     return render(request, 'users/profiles.html', context)
 
 
@@ -96,10 +105,13 @@ def account(request):
 
 @login_required(login_url = 'login')
 def starred(request):
-    star_projects = request.user.profile.star_projects.all()
-    if len(star_projects) > 3:
-        star_projects = star_projects[:3]
-    context = {'star_projects': star_projects}
+    projects = request.user.profile.star_projects.all()
+    # if len(star_projects) > 3:
+    #     star_projects = star_projects[:3]
+
+    projects, paginator, custom_range = pagination(request, projects, 6)    
+
+    context = {'projects' : projects, 'paginator': paginator, 'custom_range': custom_range}
     return render(request, 'users/starred.html', context)
 
 
@@ -116,3 +128,57 @@ def editAccount(request):
         
     context = {'form': form}
     return render(request, 'users/profile_form.html', context)
+
+
+@login_required(login_url = 'login')
+def addSkill(request):
+    profile = request.user.profile
+    skill_form = SkillForm() 
+
+    if request.method == 'POST':
+        skill_form = SkillForm(request.POST)
+        if skill_form.is_valid():
+            skill = skill_form.save(commit=False)
+            skill.owner = profile
+            skill.save()
+            messages.success(request, 'Skill was added successfully!')
+            return redirect('account') 
+    
+    page = 'Add Skill'
+    context = {'page': page, 'skill_form': skill_form }
+    return render(request, 'users/skill_form.html', context)
+
+
+@login_required(login_url = 'login')
+def editSkill(request, id):
+    profile = request.user.profile
+    skill = profile.skill_set.get(id = id)
+    skill_form = SkillForm(instance=skill) 
+
+    if request.method == 'POST':
+        skill_form = SkillForm(request.POST, instance=skill)
+        if skill_form.is_valid():
+            skill_form.save()
+            messages.success(request, 'Skill was updated successfully!')
+            return redirect('account') 
+    
+    page = 'Edit Skill'
+    context = {'page': page, 'skill_form': skill_form }
+    return render(request, 'users/skill_form.html', context)
+
+
+@login_required(login_url = 'login')
+def deleteSkill(request, id):
+    profile = request.user.profile
+    skill = profile.skill_set.get(id = id)
+
+    if request.method == 'POST':
+        skill.delete()
+        messages.success(request, 'Skill was deleted successfully!')
+        return redirect('account') 
+    
+
+    context = {'object': skill }
+    return render(request, 'delete_template.html', context)
+
+
