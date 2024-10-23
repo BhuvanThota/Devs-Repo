@@ -539,7 +539,7 @@ nav {
 
 /* Project Form Page */
 
-#project_form_section{
+.project_form_section{
     margin: 3rem auto;
     padding: 3rem;
     width: 70%;
@@ -620,7 +620,7 @@ nav {
 
 
 @media(max-width: 550px){
-    #project_form_section{
+    .project_form_section{
         margin: 3rem auto;
         padding: 1.5rem;
         width: 90%;

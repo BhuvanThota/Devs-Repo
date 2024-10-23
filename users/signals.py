@@ -29,7 +29,8 @@ def createProfile(sender, instance, created, **kwargs):
 
         EMAIL_HOST_USER = settings.EMAIL_HOST_USER
         subject = "Welcome to DEVSREPO"
-        message = "You have successfully created account in DevsRepo. Please update your profile."
+        message = """You have successfully created account in DevsRepo. 
+                    Please update your profile at http://127.0.0.1:8000/account"""
 
         if user.email is not None:
             try:    

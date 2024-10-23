@@ -791,4 +791,37 @@
 /* Single Message Section Ends */
 
 
+/* ########################################################################################################### */
+
+/* Reset Password Section */
+
+.reset_title{
+    text-decoration: underline;
+    margin-bottom: 1rem;
+}
+
+.reset_email > div{
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap:8px;
+    flex-wrap: wrap;
+}
+
+.reset_email > div> label{
+    font-weight: bold;
+}
+
+.reset_email > div> input{
+    display: block;
+    width: 90%;
+    padding: 0.25rem;
+    font-size: 1.1rem;
+}
+
+.reset_complete_btn{
+    margin: 2rem 0 1rem;
+}
+
+/* Reset Password Section Ends */
 
