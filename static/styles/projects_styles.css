@@ -616,6 +616,19 @@ nav {
     font-weight: bold;
 }
 
+.add_tags{
+    width: 90%;
+    padding: 0.5rem 0.75rem;
+    background-color: rgba(243, 245, 247, 0.839);
+    border: none;
+    border: 0.5px solid rgb(179, 181, 182);
+    columns: 10;
+}
+
+.tag_subtitle{
+    font-size: 0.85rem;
+    color: rgb(158, 156, 156);
+}
 
 
 

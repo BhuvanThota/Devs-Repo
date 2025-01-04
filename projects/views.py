@@ -84,13 +84,19 @@ def create_project(request):
         if project_form.is_valid():
             project = project_form.save(commit=False)
             project.owner = profile
-            project.save()
+            project.save()    
+ 
+            projectTags = request.POST['projectTags'].replace(',', ' ').split()
+            # print('Project Tags:', projectTags)
+            # Adding the tags
+            for tag in projectTags:
+                tag, created = Tag.objects.get_or_create(name=tag)
+                project.tags.add(tag)
             messages.success(request, 'Project was added successfully!')
             return redirect('account')
 
-    tags = Tag.objects.all().order_by('name')
     page = 'Add Project'
-    context = {'project_form': project_form, 'page': page, 'tags': tags}
+    context = {'project_form': project_form, 'page': page}
     return render(request, 'projects/project_form.html', context)
 
 
@@ -99,17 +105,31 @@ def update_project(request, id):
     profile = request.user.profile
     project = profile.project_set.get(id=id)
     project_form = ProjectForm(instance= project)
+    tags = project.tags.all()
+    # print('Existing Tags', tags)
 
-    if request.method == 'POST':
+    if request.method == 'POST':    
+        projectTags = request.POST['projectTags'].replace(',', ' ').split()
+        # print('Project Tags:', projectTags)
+
         project_form = ProjectForm(request.POST, request.FILES, instance=project)
         if project_form.is_valid():
+            # Removing the existing tags
+            for tag in tags:
+                project.tags.remove(tag)
             project_form.save()
+
+            # Adding the updated tags
+            for tag in projectTags:
+                tag, created = Tag.objects.get_or_create(name=tag)
+                project.tags.add(tag)
+            
             messages.success(request, 'Project was updated successfully!')
             return redirect('account')
         
 
     page = 'Edit Project'
-    context = {'project_form': project_form, 'page': page}
+    context = {'project_form': project_form, 'page': page, 'tags': tags}
     return render(request, 'projects/project_form.html', context)
 
 
