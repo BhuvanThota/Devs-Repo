@@ -10,7 +10,7 @@
 <form action="" method="POST" enctype="multipart/form-data" >
     {% csrf_token %}
 
-    <section id="project_form_section">
+    <section class="project_form_section">
         <div class="project_back_btn"> 
             <a class="project_back_btn_link" href="{% url 'account' %}">
                 <img class="project_back_btn_icon" src="{% static 'images/back_arrow_icon.svg' %}" alt="Back button">

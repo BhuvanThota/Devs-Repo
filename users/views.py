@@ -182,3 +182,52 @@ def deleteSkill(request, id):
     return render(request, 'delete_template.html', context)
 
 
+@login_required(login_url = 'login')
+def inbox(request):
+    profile = request.user.profile
+    received_messages = profile.received_messages.all()
+    unread_messages = received_messages.filter(is_read = False).count()
+
+    context = {"profile": profile, "received_messages": received_messages, "unread_messages": unread_messages}
+    return render(request, 'users/inbox.html', context)
+
+
+@login_required(login_url = 'login')
+def single_message(request, id):
+    profile = request.user.profile
+    single_message = profile.received_messages.get(id = id)
+
+    if single_message.is_read == False:
+        single_message.is_read = True
+        single_message.save()
+    
+    context= {"single_message": single_message}
+    return render(request, 'users/single_message.html', context)
+
+
+
+def message_form(request, id):
+    recipient_profile = Profile.objects.get(id = id)
+     
+    message_form = MessageForm()
+
+    if request.method == "POST":
+        message_form = MessageForm(request.POST)
+
+        if message_form.is_valid():
+            message = message_form.save(commit=False)
+            message.recipient = recipient_profile
+
+            if request.user.is_authenticated:
+                sender_profile = request.user.profile
+                message.sender = sender_profile
+                message.sender_name = sender_profile.name
+                message.sender_email = sender_profile.email
+
+            message.save()
+            messages.success(request, "Your message was sent successfully!")
+        return redirect('user-profile', id = id)
+
+    page = "Send Message"
+    context = {"message_form" : message_form, "page": page, "recipient_profile": recipient_profile}
+    return render(request, 'users/message_form.html', context)

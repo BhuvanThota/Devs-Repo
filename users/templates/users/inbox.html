@@ -1,0 +1,30 @@
+{% extends 'main.html' %}
+{% load static %}
+
+
+{% block title %} Inbox  {% if unread_messages %} ({{unread_messages}}) {% endif %}  {% endblock %}
+
+{% block content %}
+
+<section class="inbox_message_section">
+    <h1>INBOX - MESSAGES {% if unread_messages %} (<span class="unread_count">{{unread_messages}}</span>) {% endif %} </h1>
+
+    <div class="inbox_messages_list">
+        
+        {% for message in received_messages %}
+            <div class=" inbox_message {% if  message.is_read == False %} unread_message {% endif %} ">
+                <a href="{% url 'single_message' message.id %}" class=" inbox_message_link">
+                    <p>{{message.sender_name}}</p>
+                    <p>{{message.subject|slice:30}}</p>
+                    <p>{{message.created|date:"M. d, Y, h:i A"}}</p>
+                </a>
+            </div>
+        {% endfor %}
+
+    </div>
+</section>
+
+{% endblock %}
+
+
+
