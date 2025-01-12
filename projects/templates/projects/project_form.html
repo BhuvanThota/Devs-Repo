@@ -34,8 +34,16 @@
                     <p> {{ field.errors }} </p>
                 </div>
             {% endif %}
+                
+            {% endfor %}
+            <div class="field_wrapper">
+                <label for="projectTags">
+                    Tags (Tools or Tech Stack): 
+                    <span class="tag_subtitle">Add tags with space Ex: HTML, JS, Python, Django, Java, Spring</span>
+                </label>
+                <textarea name="projectTags" id="projectTags" class="add_tags" rows="5" placeholder="Add tags here... ">{% for tag in tags %}{{tag.name}}, {% endfor %}</textarea>
+            </div>
 
-        {% endfor %}
         <input type="submit" class="project_form_submit add_effect "/>
     </section>
 

@@ -10,7 +10,7 @@
         <span class="users_info_left_box">
             
             <section class="user_porfile_info">
-                <img class="user_profile_image" width="180px" src="{% static profile.profile_image.url %}" alt="Profile Image">
+                <img class="user_profile_image" width="180px" src="{% static profile.imageURL %}" alt="Profile Image">
                 
                 <div class="user_profile_name_details"> 
                     <h1 class="user_profile_title">{{profile.name}}</h1>
@@ -111,7 +111,7 @@
                         <a href="{% url 'project_detail' p.id %}" class="single_project_link" >
                 
                             <div class="project_container">
-                                <img class="projects_img" width="250px" src="{% static p.featured_image.url %}"  alt={{project.title}} />
+                                <img class="projects_img" width="250px" src="{% static p.imageURL %}"  alt={{project.title}} />
                     
                                 <div class="project_box">
                                     <h3 class="project_box_heading">{{p.title}}</h3>

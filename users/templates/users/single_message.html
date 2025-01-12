@@ -20,7 +20,11 @@
         </div>
     
         <div>
-            <p class="single_message_sender">Sender: {{ single_message.sender_name}}</p>
+            {% if single_message.sender %}
+                <a href="{% url 'user-profile' single_message.sender.id %}" class="single_message_sender">Sender: {{ single_message.sender_name}}</a>
+            {% else %}
+                <p class="single_message_sender">Sender: {{ single_message.sender_name}}</p>
+            {% endif %}
             <p class="single_message_time">{{ single_message.created|date:"M. d, Y, h:i A" }}</p>
         </div>
 

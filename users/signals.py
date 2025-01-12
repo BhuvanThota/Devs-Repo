@@ -61,10 +61,12 @@ def updateUser(sender, instance, created, **kwargs):
 
 @receiver(post_delete, sender=Profile)
 def deleteUser(sender, instance, **kwargs):
-    print('Deleting User: ', instance)
-    user = instance.user
-    user.delete()
-
+    try:
+        print('Deleting User: ', instance)
+        user = instance.user
+        user.delete()
+    except:
+        pass
 
 
 # Not to you as the tags are reflected for all the users not for individual account unlike skills.
