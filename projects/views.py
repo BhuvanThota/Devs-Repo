@@ -11,7 +11,7 @@ from .utils import *
 
 def projects(request):
     search_query = ''
-    projects = Project.objects.all()
+    projects = Project.objects.filter()
 
     if request.GET.get('search_query'):
         projects, search_query = searchProjects(request)

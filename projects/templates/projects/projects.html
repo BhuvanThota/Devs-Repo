@@ -27,7 +27,7 @@
         <a href="{% url 'project_detail' p.id %}" class="single_project_link" >
 
             <div class="project_container">
-                <img class="projects_img" width="250px" src="{% static p.featured_image.url %}"  alt={{project.title}} />
+                <img class="projects_img" width="250px" src="{% static p.imageURL %}"  alt={{project.title}} />
     
                 <div class="project_box">
                     <h3 class="project_box_heading">{{p.title}}</h3>
